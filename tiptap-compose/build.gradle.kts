@@ -2,6 +2,19 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    `maven-publish`
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.irangareddy.tiptap-compose"
+                artifactId = "tiptap-compose"
+            }
+        }
+    }
 }
 
 android {
