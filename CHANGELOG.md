@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.1 — 2026-10-11
+
+- Build: resolve Maven Central artifacts through Google's mirror first. The JitPack build of
+  v0.2.0 failed when its builder got `429 Too Many Requests` from `repo.maven.apache.org`.
+  No library code changes; use v0.2.1 (v0.2.0 never published on JitPack).
+
 ## v0.2.0 — 2026-10-11
 
 Security, styling and line-clamp release. **Breaking changes** are marked ⚠️.

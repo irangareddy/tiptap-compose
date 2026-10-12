@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 `app/build.gradle.kts`:
 
 ```kotlin
-implementation("com.github.irangareddy:tiptap-compose:v0.2.0")
+implementation("com.github.irangareddy:tiptap-compose:v0.2.1")
 ```
 
 minSdk 28. The library brings `org.jsoup:jsoup`, `androidx.webkit` and `androidx.browser`.
