@@ -45,13 +45,28 @@ android {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
     }
 }
 
 dependencies {
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
+    api(libs.compose.runtime)
+    api(libs.compose.ui)
     implementation(libs.compose.foundation)
+    implementation(libs.jsoup)
+    implementation(libs.androidx.webkit)
+    implementation(libs.androidx.browser)
+    implementation(libs.androidx.annotation)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+    debugImplementation(libs.compose.ui.test.manifest)
 }

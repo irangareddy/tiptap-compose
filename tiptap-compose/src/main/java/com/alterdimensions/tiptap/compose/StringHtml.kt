@@ -3,22 +3,20 @@ package com.alterdimensions.tiptap.compose
 /**
  * Returns `true` if the string contains HTML tags (e.g. `<p>`, `<strong>`).
  */
-fun String.containsHtml(): Boolean {
-    val pattern = Regex("<[a-zA-Z][^>]*>")
-    return pattern.containsMatchIn(this)
-}
+fun String.containsHtml(): Boolean = htmlTagPattern.containsMatchIn(this)
+
+private val htmlTagPattern = Regex("<[a-zA-Z][^>]*>")
 
 /**
- * Returns the string with all HTML tags removed, suitable for plain-text previews.
+ * Returns the string as one line of plain text, suitable for short previews.
  *
- * Multiple whitespace characters are collapsed into single spaces and
- * leading/trailing whitespace is trimmed.
+ * Same as [htmlToPlainText] with a single space between blocks: the HTML is sanitised first (so
+ * script and style content never shows), entities are decoded, whitespace is collapsed and the
+ * result is trimmed. Plain text without tags is returned unchanged.
  */
 fun String.stripHtmlTags(): String {
     if (!containsHtml()) return this
-    val stripped = replace(Regex("<[^>]+>"), "")
-    val collapsed = stripped.replace(Regex("\\s+"), " ")
-    return collapsed.trim()
+    return htmlToPlainText(this, blockSeparator = " ").replace(Regex("\\s+"), " ").trim()
 }
 
 /**
